@@ -1,0 +1,17 @@
+{
+  "name": "refactionjs",
+  "version": "1.0.0",
+  "description": "Refactoring exercise for Node",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "package": "rm ~/Downloads/refactionjs.zip && zip ~/Downloads/refactionjs.zip *.md *.json *.js *.hbs"
+  },
+  "author": "Xero",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "handlebars": "^4.0.10",
+    "nedb": "^1.8.0"
+  }
+}
