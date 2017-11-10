@@ -5,7 +5,9 @@ module.exports = (db) => (req, res) => {
   fs.readFile('everyone.hbs', 'utf8', (err, data) => {
     var template = handlebars.compile(data);
     db.find({
-      gender: 'female'
+      age: {
+        $gte: 30
+      }
     }, {}, (err, docs) => {
       var rendered = template({
         people: docs

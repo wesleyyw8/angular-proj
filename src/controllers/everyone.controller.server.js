@@ -4,9 +4,7 @@ const handlebars = require('handlebars');
 module.exports = (db) => (req, res) => {
   fs.readFile('everyone.hbs', 'utf8', (err, data) => {
     var template = handlebars.compile(data);
-    db.find({
-      gender: 'female'
-    }, {}, (err, docs) => {
+    db.find({}, {}, (err, docs) => {
       var rendered = template({
         people: docs
       });
