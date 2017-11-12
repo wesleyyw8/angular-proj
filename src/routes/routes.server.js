@@ -1,13 +1,15 @@
 const { male, female, over30, under30, everyone } = require('../controllers');
 
 module.exports = (app, db) => {
-  app.get('/male', male(db));
+  const baseUrl = '/endpoints'
 
-  app.get('/female', female(db));
+  app.get(`${baseUrl}/male`, male(db));
 
-  app.get('/over30', over30(db));
+  app.get(`${baseUrl}/female`, female(db));
 
-  app.get('/under30', under30(db));
+  app.get(`${baseUrl}/over30`, over30(db));
 
-  app.get('/everyone', everyone(db));   
+  app.get(`${baseUrl}/under30`, under30(db));
+
+  app.get(`${baseUrl}/everyone`, everyone(db));   
 }

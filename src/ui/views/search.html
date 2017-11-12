@@ -1,0 +1,5 @@
+<div class="search-container" ng-init="step1 = true">
+
+  <list-options options="genderOptions" on-select="onSelectGender" ng-class="{'isVisible' : step1}"></list-options>
+  <list-options options="ageOptions" on-select="onSelectAgeRange" ng-class="{'isVisible' : step2}"></list-options>
+</div>

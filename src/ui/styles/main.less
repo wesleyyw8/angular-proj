@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.page-content {
+  margin-top: 50px;
+}
+
+.search-container {
+  background-color: #f6f7f9;
+  border-radius: 0 0 9px 9px;
+  color: #1d2129;
+  overflow: visible;
+  margin: 0 auto;
+  width: 300px;
+  position: relative;
+}
+
+.list-options {
+  padding-top: 0px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  font-family: Circular,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+
+  &.isVisible {
+    transition: visibility 2s, opacity 2s linear;
+    display: block;
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+    padding-top: 10px;
+  }
+
+  .list-options-values {
+    margin-top: 20px;
+    p {
+      cursor: pointer;
+      border-bottom: 1px solid black;
+      height: 50px;
+      line-height: 50px;
+      &:first-child {
+        border-top: 1px solid black;
+      }
+      &:hover {
+        background-color: antiquewhite;
+      }
+      &.selected {
+        background-color: aquamarine !important; 
+      }
+    }
+  }
+}
