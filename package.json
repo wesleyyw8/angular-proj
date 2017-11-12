@@ -10,14 +10,15 @@
   "author": "Xero",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.5.2",
+    "angular-route": "1.5.0",
     "express": "^4.15.3",
-    "nedb": "^1.8.0",
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
+    "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-less": "^1.2.0",
     "grunt-contrib-livereload": "0.1.1",
     "grunt-contrib-watch": "^0.6.1",
-    "angular": "^1.5.2",
-    "angular-route": "1.5.0"
+    "nedb": "^1.8.0"
   }
 }

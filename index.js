@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const Datastore = require('nedb');
 
-app.use(express.static(__dirname + '/src/ui')); 
+app.use('/', express.static(__dirname + '/src/ui')); 
 app.use('/scripts', express.static(__dirname + '/node_modules'));
 
 const db = new Datastore({
