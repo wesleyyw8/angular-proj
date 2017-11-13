@@ -89,7 +89,7 @@ app.controller('searchController',
     return '/'+$scope.selectedGender+'/'+$scope.selectedAge.min+'/'+$scope.selectedAge.max;
   }
 }]);
-app.directive('listOptions', [ '$timeout', function ($timeout) {
+app.directive('listOptions', function () {
   return {
     replace: true,
     restrict: 'E',
@@ -106,7 +106,7 @@ app.directive('listOptions', [ '$timeout', function ($timeout) {
       };
     } 
   }
-}]);
+});
 app.service('dataService', ["$q", "$http", "Config", function ($q, $http, Config) {
     var service = {
       getPeople: getPeople,

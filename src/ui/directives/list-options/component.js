@@ -1,4 +1,4 @@
-app.directive('listOptions', [ '$timeout', function ($timeout) {
+app.directive('listOptions', function () {
   return {
     replace: true,
     restrict: 'E',
@@ -15,4 +15,4 @@ app.directive('listOptions', [ '$timeout', function ($timeout) {
       };
     } 
   }
-}]);
+});

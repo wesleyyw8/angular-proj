@@ -1,6 +1,6 @@
 var app = angular.module('refactionjs',['ngRoute']);
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider,$locationProvider){
+app.config(['$routeProvider', function($routeProvider){
   $routeProvider.
     when('/search', {
       templateUrl: '../views/search.html',
@@ -20,7 +20,7 @@ app.factory('Config', [function() {
   return {
     base_url: baseUrl,
     endpoints: {
-      search: 'search'
+      search: 'search',
     }
   };
 }]);
