@@ -1,4 +1,4 @@
-const { search, female, over30, under30, everyone } = require('../controllers');
+const { search } = require('../controllers');
 
 module.exports = (app, db) => {
   const baseUrl = '/endpoints'
