@@ -1,17 +1,10 @@
+
+const genderOptions = require('./genderOptions');
+
 app.controller('searchController',
 ['$scope', 'dataService', '$location', function($scope, dataService, $location){
   
-  $scope.genderOptions = [
-    {
-      label: 'It doesnt matter',
-      value: 'everyone'
-    },{
-      label: 'Males',
-      value: 'male'
-    },{
-      label: 'Females',
-      value: 'female'
-    }];
+  $scope.genderOptions = genderOptions;
 
   $scope.ageOptions = [
     {

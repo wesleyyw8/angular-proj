@@ -1,3 +1,30 @@
+var app = angular.module('refactionjs',['ngRoute']);
+
+app.config(['$routeProvider', function($routeProvider){
+  $routeProvider.
+    when('/search', {
+      templateUrl: '../views/search.html',
+      controller: 'searchController'
+    }).
+    when('/result/:gender/:minAge/:maxAge', {
+      templateUrl: '../views/result.html',
+      controller: 'resultController'
+    }).
+    otherwise({
+      redirectTo: '/search'
+    });
+}]);
+
+app.factory('Config', [function() {
+  var baseUrl = '/endpoints/';
+  return {
+    base_url: baseUrl,
+    endpoints: {
+      search: 'search',
+    }
+  };
+}]);
+module.exports = {}
 app.controller('resultController',
 ['$scope', 'dataService','$route', function($scope, dataService, $route){
   
@@ -11,20 +38,13 @@ app.controller('resultController',
     $scope.data = resp.data !== [] ? resp.data : {resp: 'No results.'};
   }); 
 }]);
+
+const genderOptions = require('./genderOptions');
+
 app.controller('searchController',
 ['$scope', 'dataService', '$location', function($scope, dataService, $location){
   
-  $scope.genderOptions = [
-    {
-      label: 'It doesnt matter',
-      value: 'everyone'
-    },{
-      label: 'Males',
-      value: 'male'
-    },{
-      label: 'Females',
-      value: 'female'
-    }];
+  $scope.genderOptions = genderOptions;
 
   $scope.ageOptions = [
     {
