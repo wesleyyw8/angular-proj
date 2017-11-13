@@ -4,7 +4,8 @@ app.directive('listOptions', [ '$timeout', function ($timeout) {
     restrict: 'E',
     scope: {
       options: '=',
-      onSelect: '='
+      onSelect: '=',
+      title: '@'
     },
     templateUrl: 'directives/list-options/template.html',
     link: function (scope, element, attrs) { 

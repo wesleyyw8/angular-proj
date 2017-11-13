@@ -1,6 +1,6 @@
 <div class="list-options">
   <span>
-    What are your looking for?
+    {{::title}}
   </span>
   <div class="list-options-values">
     <p ng-repeat="option in options" ng-click=optionSelect(option)>{{::option.label}}</p>
