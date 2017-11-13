@@ -6,7 +6,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider,$loca
       templateUrl: '../views/search.html',
       controller: 'searchController'
     }).
-    when('/result', {
+    when('/result/:gender/:minAge/:maxAge', {
       templateUrl: '../views/result.html',
       controller: 'resultController'
     }).
@@ -20,11 +20,7 @@ app.factory('Config', [function() {
   return {
     base_url: baseUrl,
     endpoints: {
-      everyone: 'everyone',
-      female: 'female',
-      male: 'male',
-      over30: 'over30',
-      under30: 'under30'
+      search: 'search'
     }
   };
 }]);

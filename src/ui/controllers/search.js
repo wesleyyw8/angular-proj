@@ -53,13 +53,12 @@ app.controller('searchController',
     }];
 
   $scope.onSelectGender = function (val) {
-    console.log(val.value);
+    $scope.selectedGender = val.value;
     nextStep();
   };
 
-
   $scope.onSelectAgeRange = function (val) {
-    console.log(val.value);
+    $scope.selectedAge = val.value;
     nextStep();
   };
 
@@ -68,7 +67,12 @@ app.controller('searchController',
       $scope.step1 = false;
       $scope.step2 = true;
     }
-    else
-      $location.path('/result');
+    else{
+      $location.path('/result'+mountQueryString());
+    }
+  }
+
+  function mountQueryString() {
+    return '/'+$scope.selectedGender+'/'+$scope.selectedAge.min+'/'+$scope.selectedAge.max;
   }
 }]);

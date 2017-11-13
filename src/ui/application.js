@@ -1,7 +1,14 @@
 app.controller('resultController',
-['$scope', 'dataService', function($scope, dataService){
-  dataService.getMales().then(function(resp) {
-    console.log(resp);
+['$scope', 'dataService','$route', function($scope, dataService, $route){
+  
+  var params = {
+    gender: $route.current.params.gender,
+    minAge: $route.current.params.minAge,
+    maxAge: $route.current.params.maxAge
+  };
+
+  dataService.getPeople(params).then(function(resp) {
+    $scope.data = resp.data !== [] ? resp.data : {resp: 'No results.'};
   }); 
 }]);
 app.controller('searchController',
@@ -59,13 +66,12 @@ app.controller('searchController',
     }];
 
   $scope.onSelectGender = function (val) {
-    console.log(val.value);
+    $scope.selectedGender = val.value;
     nextStep();
   };
 
-
   $scope.onSelectAgeRange = function (val) {
-    console.log(val.value);
+    $scope.selectedAge = val.value;
     nextStep();
   };
 
@@ -74,8 +80,13 @@ app.controller('searchController',
       $scope.step1 = false;
       $scope.step2 = true;
     }
-    else
-      $location.path('/result');
+    else{
+      $location.path('/result'+mountQueryString());
+    }
+  }
+
+  function mountQueryString() {
+    return '/'+$scope.selectedGender+'/'+$scope.selectedAge.min+'/'+$scope.selectedAge.max;
   }
 }]);
 app.directive('listOptions', [ '$timeout', function ($timeout) {
@@ -97,35 +108,21 @@ app.directive('listOptions', [ '$timeout', function ($timeout) {
 }]);
 app.service('dataService', ["$q", "$http", "Config", function ($q, $http, Config) {
     var service = {
-      getMales: getMales,
-      getFemales: getFemales,
-      getEveryone: getEveryone,
-      getOver30: getOver30,
-      getUnder30: getUnder30
+      getPeople: getPeople,
     };
     return service;
 
-    function getMales(){
+    function getPeople(params){
       var def = $q.defer();
-      $http.get(Config.base_url + Config.endpoints.male).then(function(data){
+      var parameters = '?gender='+params.gender+'&minAge='+params.minAge+'&maxAge='+params.maxAge;
+      
+      $http.get(Config.base_url + Config.endpoints.search + parameters).then(function(data){
         def.resolve(data);
       })
       .then(function(){
         def.reject("fail");
       })
       return def.promise;
-    }
-    function getFemales(id){
-      console.log('adw')
-    }
-    function getEveryone(id){
-      console.log('adw');
-    }
-    function getOver30(){
-      console.log('aqweq');
-    }  
-    function getUnder30() {
-      console.log('awdawdhbahuwd');
     }
   }]
 );

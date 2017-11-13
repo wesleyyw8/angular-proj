@@ -1,6 +1,13 @@
 app.controller('resultController',
-['$scope', 'dataService', function($scope, dataService){
-  dataService.getMales().then(function(resp) {
-    console.log(resp);
+['$scope', 'dataService','$route', function($scope, dataService, $route){
+  
+  var params = {
+    gender: $route.current.params.gender,
+    minAge: $route.current.params.minAge,
+    maxAge: $route.current.params.maxAge
+  };
+
+  dataService.getPeople(params).then(function(resp) {
+    $scope.data = resp.data !== [] ? resp.data : {resp: 'No results.'};
   }); 
 }]);

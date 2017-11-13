@@ -1,4 +1,5 @@
 module.exports = function(grunt){
+  const jsFiles = ['src/ui/controllers/*.js', 'src/ui/directives/**/*.js', 'src/ui/services/*.js'];
   grunt.initConfig({
     concat:{
       js:{
@@ -11,7 +12,7 @@ module.exports = function(grunt){
     },
     watch: {
       less: {
-        files: ['src/ui/styles/*.less'],
+        files: ['src/ui/styles/*.less', ...jsFiles],
         tasks: ['less', 'concat'],
         options: {
           livereload: true
