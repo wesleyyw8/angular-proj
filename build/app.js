@@ -60,28 +60,20 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1);
-__webpack_require__(2);
-__webpack_require__(4);
-__webpack_require__(5);
-module.exports = __webpack_require__(6);
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
-var app = angular.module('refactionjs', ['ngRoute']);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var app = exports.app = angular.module('refactionjs', ['ngRoute']);
 
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/search', {
@@ -106,23 +98,28 @@ app.factory('Config', [function () {
 }]);
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(0);
+__webpack_require__(2);
+__webpack_require__(3);
+__webpack_require__(4);
+module.exports = __webpack_require__(5);
+
+
+/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _test = __webpack_require__(3);
-
-var _test2 = _interopRequireDefault(_test);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _config = __webpack_require__(0);
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-console.log(_test2.default);
-
-app.controller('searchController', ['$scope', 'dataService', '$location', function ($scope, dataService, $location) {
+_config.app.controller('searchController', ['$scope', 'dataService', '$location', function ($scope, dataService, $location) {
 
   $scope.genderOptions = [{
     label: 'Less than 18',
@@ -203,19 +200,9 @@ app.controller('searchController', ['$scope', 'dataService', '$location', functi
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = 'bears';
+var _config = __webpack_require__(0);
 
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-app.controller('resultController', ['$scope', 'dataService', '$route', function ($scope, dataService, $route) {
+_config.app.controller('resultController', ['$scope', 'dataService', '$route', function ($scope, dataService, $route) {
 
   var params = {
     gender: $route.current.params.gender,
@@ -229,13 +216,15 @@ app.controller('resultController', ['$scope', 'dataService', '$route', function 
 }]);
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-app.directive('listOptions', function () {
+var _config = __webpack_require__(0);
+
+_config.app.directive('listOptions', function () {
   return {
     replace: true,
     restrict: 'E',
@@ -255,13 +244,15 @@ app.directive('listOptions', function () {
 });
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-app.service('dataService', ["$q", "$http", "Config", function ($q, $http, Config) {
+var _config = __webpack_require__(0);
+
+_config.app.service('dataService', ["$q", "$http", "Config", function ($q, $http, Config) {
   var service = {
     getPeople: getPeople
   };

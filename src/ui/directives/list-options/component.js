@@ -1,3 +1,5 @@
+import { app } from './../../config/config';
+
 app.directive('listOptions', function () {
   return {
     replace: true,

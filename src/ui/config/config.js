@@ -1,4 +1,4 @@
-var app = angular.module('refactionjs',['ngRoute']);
+export const app = angular.module('refactionjs',['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider.

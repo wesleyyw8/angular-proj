@@ -1,3 +1,5 @@
+import { app } from './../config/config';
+
 app.service('dataService', ["$q", "$http", "Config", function ($q, $http, Config) {
     var service = {
       getPeople: getPeople,

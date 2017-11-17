@@ -1,3 +1,5 @@
+import { app } from './../config/config';
+
 app.controller('resultController',
 ['$scope', 'dataService','$route', function($scope, dataService, $route){
   

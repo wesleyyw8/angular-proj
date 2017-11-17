@@ -1,6 +1,4 @@
-import bears from './test';
-
-console.log(bears);
+import { app } from './../config/config';
 
 app.controller('searchController',
 ['$scope', 'dataService', '$location', function($scope, dataService, $location){
