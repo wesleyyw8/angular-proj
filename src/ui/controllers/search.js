@@ -1,10 +1,17 @@
+import bears from './test';
 
-const genderOptions = require('./genderOptions');
+console.log(bears);
 
 app.controller('searchController',
 ['$scope', 'dataService', '$location', function($scope, dataService, $location){
   
-  $scope.genderOptions = genderOptions;
+  $scope.genderOptions = [{
+    label: 'Less than 18',
+    value: {
+      min: null,
+      max: 18
+    }
+  }];
 
   $scope.ageOptions = [
     {
@@ -44,6 +51,8 @@ app.controller('searchController',
         max: null
       }
     }];
+
+  console.log([...$scope.genderOptions, ...$scope.ageOptions ]);
 
   $scope.onSelectGender = function (val) {
     $scope.selectedGender = val.value;

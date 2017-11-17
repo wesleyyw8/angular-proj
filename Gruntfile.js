@@ -5,18 +5,6 @@ module.exports = function(grunt){
   const jsFiles = ['src/ui/config/config.js', 'src/ui/controllers/*.js', 'src/ui/directives/**/*.js', 'src/ui/services/*.js'];
 
   grunt.initConfig({
-    requirejs: {
-      compile: {
-        options: {
-          baseUrl: path.resolve(__dirname),
-          // mainConfigFile: 'path/to/config.js',
-          // name: 'path/to/almond', /* assumes a production build using almond, if you don't use almond, you
-                                     // need to set the "includes" or "modules" option instead of name */
-          include: ['src/ui/application.js'],
-          out: 'src/ui/application.module.js'
-        }
-      }
-    },
     babel: {
       options: {
         sourceMap: true,
@@ -24,7 +12,7 @@ module.exports = function(grunt){
       },
       dist: {
         files: {
-          'src/ui/application.es.js': 'src/ui/application.module.js'
+          'src/ui/application-babel.js': 'src/ui/application.js'
         }
       }
     },
@@ -40,7 +28,7 @@ module.exports = function(grunt){
     watch: {
       js: {
         files: jsFiles,
-        tasks: ['concat', 'babel', 'requirejs']
+        tasks: ['concat', 'babel']
       },
       less: {
         files: ['src/ui/styles/*.less'],
@@ -61,5 +49,5 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.registerTask('default', ['less', 'concat', 'babel', 'requirejs', 'watch']);
+  grunt.registerTask('default', ['less', 'concat', 'babel', 'watch']);
 };

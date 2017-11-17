@@ -4,6 +4,7 @@ const Datastore = require('nedb');
 
 app.use('/', express.static(__dirname + '/src/ui')); 
 app.use('/scripts', express.static(__dirname + '/node_modules'));
+app.use('/build', express.static(__dirname + '/build'));
 
 const db = new Datastore({
   filename: 'db.json',
