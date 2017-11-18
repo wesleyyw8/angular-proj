@@ -1,12 +1,8 @@
 import { app } from './../config/config';
 
-app.service('dataService', ["$q", "$http", "Config", function ($q, $http, Config) {
-    var service = {
-      getPeople: getPeople,
-    };
-    return service;
+app.service('dataService', ["$q", "$http", "Config", ($q, $http, Config) => {
 
-    function getPeople(params){
+    const getPeople = (params) =>{
       var def = $q.defer();
       var parameters = '?gender='+params.gender+'&minAge='+params.minAge+'&maxAge='+params.maxAge;
       
@@ -15,8 +11,12 @@ app.service('dataService', ["$q", "$http", "Config", function ($q, $http, Config
       })
       .then(function(){
         def.reject("fail");
-      })
+      });
       return def.promise;
-    }
+    };
+    const service = {
+      getPeople
+    };
+    return service;
   }]
 );

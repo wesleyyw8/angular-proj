@@ -1,6 +1,6 @@
 import { app } from './../../config/config';
 
-app.directive('listOptions', function () {
+app.directive('listOptions', () => {
   return {
     replace: true,
     restrict: 'E',
@@ -10,11 +10,11 @@ app.directive('listOptions', function () {
       title: '@'
     },
     templateUrl: 'directives/list-options/template.html',
-    link: function (scope, element, attrs) { 
-      scope.optionSelect = function (value) {
+    link: (scope, element, attrs) => { 
+      scope.optionSelect = (value) => {
         scope.optionSelected = value;
         scope.onSelect(value);
       };
     } 
-  }
+  };
 });

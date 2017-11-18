@@ -1,7 +1,7 @@
 import { app } from './../config/config';
 
 app.controller('resultController',
-['$scope', 'dataService','$route', function($scope, dataService, $route){
+['$scope', 'dataService','$route', ($scope, dataService, $route) => {
   
   var params = {
     gender: $route.current.params.gender,

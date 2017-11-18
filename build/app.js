@@ -65,34 +65,35 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+const app = angular.module('refactionjs',['ngRoute']);
+/* harmony export (immutable) */ __webpack_exports__["app"] = app;
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var app = exports.app = angular.module('refactionjs', ['ngRoute']);
-
-app.config(['$routeProvider', function ($routeProvider) {
-  $routeProvider.when('/search', {
-    templateUrl: '../views/search.html',
-    controller: 'searchController'
-  }).when('/result/:gender/:minAge/:maxAge', {
-    templateUrl: '../views/result.html',
-    controller: 'resultController'
-  }).otherwise({
-    redirectTo: '/search'
-  });
+app.config(['$routeProvider', function($routeProvider){
+  $routeProvider.
+    when('/search', {
+      templateUrl: '../views/search.html',
+      controller: 'searchController'
+    }).
+    when('/result/:gender/:minAge/:maxAge', {
+      templateUrl: '../views/result.html',
+      controller: 'resultController'
+    }).
+    otherwise({
+      redirectTo: '/search'
+    });
 }]);
 
-app.factory('Config', [function () {
+app.factory('Config', [function() {
   var baseUrl = '/endpoints/';
   return {
     base_url: baseUrl,
     endpoints: {
-      search: 'search'
+      search: 'search',
     }
   };
 }]);
@@ -103,128 +104,144 @@ app.factory('Config', [function () {
 
 __webpack_require__(0);
 __webpack_require__(2);
-__webpack_require__(3);
 __webpack_require__(4);
-module.exports = __webpack_require__(5);
+__webpack_require__(5);
+module.exports = __webpack_require__(6);
 
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_config__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dropDownOptions__ = __webpack_require__(3);
 
 
-var _config = __webpack_require__(0);
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+__WEBPACK_IMPORTED_MODULE_0__config_config__["app"].controller('searchController',
+['$scope', 'dataService', '$location', ($scope, dataService, $location) => {
+  
+  $scope.genderOptions = __WEBPACK_IMPORTED_MODULE_1__dropDownOptions__["b" /* genderOptions */];
+  $scope.ageOptions = __WEBPACK_IMPORTED_MODULE_1__dropDownOptions__["a" /* ageOptions */];
 
-_config.app.controller('searchController', ['$scope', 'dataService', '$location', function ($scope, dataService, $location) {
-
-  $scope.genderOptions = [{
-    label: 'Less than 18',
-    value: {
-      min: null,
-      max: 18
-    }
-  }];
-
-  $scope.ageOptions = [{
-    label: 'Less than 18',
-    value: {
-      min: null,
-      max: 18
-    }
-  }, {
-    label: 'Between 19 - 25',
-    value: {
-      min: 19,
-      max: 25
-    }
-  }, {
-    label: 'Between 26 - 35',
-    value: {
-      min: 26,
-      max: 35
-    }
-  }, {
-    label: 'Between 36 - 49',
-    value: {
-      min: 36,
-      max: 49
-    }
-  }, {
-    label: 'More than 50',
-    value: {
-      min: 50,
-      max: null
-    }
-  }, {
-    label: 'All',
-    value: {
-      min: 0,
-      max: null
-    }
-  }];
-
-  console.log([].concat(_toConsumableArray($scope.genderOptions), _toConsumableArray($scope.ageOptions)));
-
-  $scope.onSelectGender = function (val) {
+  $scope.onSelectGender = val => {
     $scope.selectedGender = val.value;
     nextStep();
   };
 
-  $scope.onSelectAgeRange = function (val) {
+  $scope.onSelectAgeRange = val => {
     $scope.selectedAge = val.value;
     nextStep();
   };
-
-  function nextStep() {
+  
+  const nextStep = () => {
     if ($scope.step1) {
       $scope.step1 = false;
       $scope.step2 = true;
-    } else {
-      $location.path('/result' + mountQueryString());
     }
-  }
+    else{
+      $location.path(`/result${mountQueryString()}`);
+    }
+  };
 
-  function mountQueryString() {
-    return '/' + $scope.selectedGender + '/' + $scope.selectedAge.min + '/' + $scope.selectedAge.max;
-  }
+  const mountQueryString = () => 
+    `/${$scope.selectedGender}/${$scope.selectedAge.min}/${$scope.selectedAge.max}`;
+  
 }]);
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+const genderOptions = [{
+  label: 'It doesnt matter',
+  value: 'everyone'
+},{
+  label: 'Males',
+  value: 'male'
+},{
+  label: 'Females',
+  value: 'female'
+}];
+/* harmony export (immutable) */ __webpack_exports__["b"] = genderOptions;
 
 
-var _config = __webpack_require__(0);
+const ageOptions = [{
+  label: 'Less than 18',
+  value: {
+    min: null,
+    max: 18
+  }
+},{
+  label: 'Between 19 - 25',
+  value: {
+    min: 19,
+    max: 25
+  }
+},{
+  label: 'Between 26 - 35',
+  value: {
+    min: 26,
+    max: 35
+  }
+},{
+  label: 'Between 36 - 49',
+  value: {
+    min: 36,
+    max: 49
+  }
+},{
+  label: 'More than 50',
+  value: {
+    min: 50,
+    max: null
+  }
+}, {
+  label: 'All',
+  value: {
+    min: 0,
+    max: null
+  }
+}];
+/* harmony export (immutable) */ __webpack_exports__["a"] = ageOptions;
 
-_config.app.controller('resultController', ['$scope', 'dataService', '$route', function ($scope, dataService, $route) {
 
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_config__ = __webpack_require__(0);
+
+
+__WEBPACK_IMPORTED_MODULE_0__config_config__["app"].controller('resultController',
+['$scope', 'dataService','$route', ($scope, dataService, $route) => {
+  
   var params = {
     gender: $route.current.params.gender,
     minAge: $route.current.params.minAge,
     maxAge: $route.current.params.maxAge
   };
 
-  dataService.getPeople(params).then(function (resp) {
-    $scope.data = resp.data !== [] ? resp.data : { resp: 'No results.' };
-  });
+  dataService.getPeople(params).then(function(resp) {
+    $scope.data = resp.data !== [] ? resp.data : {resp: 'No results.'};
+  }); 
 }]);
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_config__ = __webpack_require__(0);
 
 
-var _config = __webpack_require__(0);
-
-_config.app.directive('listOptions', function () {
+__WEBPACK_IMPORTED_MODULE_0__config_config__["app"].directive('listOptions', () => {
   return {
     replace: true,
     restrict: 'E',
@@ -234,42 +251,44 @@ _config.app.directive('listOptions', function () {
       title: '@'
     },
     templateUrl: 'directives/list-options/template.html',
-    link: function link(scope, element, attrs) {
-      scope.optionSelect = function (value) {
+    link: (scope, element, attrs) => { 
+      scope.optionSelect = (value) => {
         scope.optionSelected = value;
         scope.onSelect(value);
       };
-    }
+    } 
   };
 });
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config_config__ = __webpack_require__(0);
 
 
-var _config = __webpack_require__(0);
+__WEBPACK_IMPORTED_MODULE_0__config_config__["app"].service('dataService', ["$q", "$http", "Config", ($q, $http, Config) => {
 
-_config.app.service('dataService', ["$q", "$http", "Config", function ($q, $http, Config) {
-  var service = {
-    getPeople: getPeople
-  };
-  return service;
-
-  function getPeople(params) {
-    var def = $q.defer();
-    var parameters = '?gender=' + params.gender + '&minAge=' + params.minAge + '&maxAge=' + params.maxAge;
-
-    $http.get(Config.base_url + Config.endpoints.search + parameters).then(function (data) {
-      def.resolve(data);
-    }).then(function () {
-      def.reject("fail");
-    });
-    return def.promise;
-  }
-}]);
+    const getPeople = (params) =>{
+      var def = $q.defer();
+      var parameters = '?gender='+params.gender+'&minAge='+params.minAge+'&maxAge='+params.maxAge;
+      
+      $http.get(Config.base_url + Config.endpoints.search + parameters).then(function(data){
+        def.resolve(data);
+      })
+      .then(function(){
+        def.reject("fail");
+      });
+      return def.promise;
+    };
+    const service = {
+      getPeople
+    };
+    return service;
+  }]
+);
 
 /***/ })
 /******/ ]);

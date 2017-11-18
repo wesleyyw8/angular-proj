@@ -14,9 +14,18 @@ module.exports = {
     filename: 'app.js'
   },
   module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'jshint-loader',
+        options: { esversion: 6 }
+      }
+    ],
     loaders: [
       {
         test: /\.js$/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
            presets: ['es2015']
@@ -25,7 +34,8 @@ module.exports = {
     ]
   },
   stats: {
-     colors: true
+    colors: true
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  watch: true
 };
